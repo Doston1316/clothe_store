@@ -17,7 +17,7 @@ public class Debtor {
     private String productName;
     private String description;
     private String phone;
-    private Date date;
+    private Long date;
 
 
 

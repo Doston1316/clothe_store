@@ -39,12 +39,11 @@ public class OrderServiceImpl implements OrderService {
             if (product.getQuantity()<0){
                 throw new  NotFoundException("Kechirasiz "+product.getName()+" bu turdagi mahsulot bazada yetarli emas");
             }
-            java.sql.Date sqlDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
             SaleProduct saleProduct = new SaleProduct();
             saleProduct.setProduct(productRepository.save(product));
             saleProduct.setSalePrice(sale.getQuantity()*sale.getSalePrice());
             saleProduct.setQuantity(sale.getQuantity());
-            saleProduct.setDate(sqlDate);
+            saleProduct.setDate(new Date().getTime());
             saleProduct.setProfit(sale.getQuantity()*(sale.getSalePrice() - saleProduct.getProduct().getPrice()));
             saleProduct.setBrand(product.getBrand());
             saleProduct.setName(product.getName());

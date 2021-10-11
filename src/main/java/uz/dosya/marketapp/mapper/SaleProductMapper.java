@@ -18,7 +18,7 @@ public class SaleProductMapper implements RowMapper {
         result.setProfit(rs.getLong("profit"));
         result.setQuantity(rs.getLong("quantity"));
         result.setSalePrice(rs.getLong("sale_price"));
-        result.setDate(rs.getDate("date"));
+        result.setDate(rs.getLong("date"));
         result.setSize(rs.getString("size"));
         return result;
     }

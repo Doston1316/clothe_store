@@ -11,7 +11,7 @@ public class SaleProductResult {
     private Long salePrice;
     private Long quantity;
     private Long profit;
-    private Date date;
+    private Long date;
     private String name;
     private String size;
     private String brand;

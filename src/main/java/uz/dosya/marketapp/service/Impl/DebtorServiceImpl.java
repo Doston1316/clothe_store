@@ -30,7 +30,7 @@ public class DebtorServiceImpl implements DebtorService {
         newDebtor.setProductName(debtor.getProductName());
         newDebtor.setDate(debtor.getDate());
         newDebtor.setPhone(debtor.getPhone());
-        debtor.setDate(new Date());
+        debtor.setDate(new Date().getTime());
         return debtorRepository.save(debtor);
     }
 
