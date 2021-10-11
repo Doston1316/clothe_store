@@ -19,12 +19,40 @@ public class ProductController {
         return service.save(product);
     }
 
+
     @GetMapping
     public List<Product> getAll() {
         return service.getAll();
     }
+
+//    delete
     @PutMapping ("{id}")
     public void delete(@PathVariable Long id){
         service.delete(id);
     }
+
+    @PutMapping("/update/{id}")
+    public Product update(@PathVariable("id") Long id,
+                          @RequestBody Product product) throws Exception {
+        return service.update(id,product);
+    }
+
+    @GetMapping("/{name}")
+    public List<Product>search(@PathVariable("name")String name){
+        return service.search(name);
+    }
+
+    @GetMapping("/deleted")
+    public List<Product> findAllDeleted() {
+        return service.findAllDeleted();
+    }
+
+
+//    tugagan tovarlar
+    @GetMapping("/finished")
+    public List<Product> findAllFinishedProducts() {
+        return service.findAllFinishedProducts();
+    }
+
+
 }

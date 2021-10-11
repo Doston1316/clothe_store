@@ -1,18 +1,13 @@
-package uz.dosya.marketapp.entity;
+package uz.dosya.marketapp.mapper;
 
 import lombok.Data;
+import uz.dosya.marketapp.entity.Product;
 
-import javax.persistence.*;
+import javax.persistence.OneToOne;
 import java.util.Date;
-
-@Entity
 @Data
-public class SaleProduct {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @OneToOne
-    private Product product;
+public class SaleProductResult {
+
     private Long salePrice;
     private Long quantity;
     private Long profit;

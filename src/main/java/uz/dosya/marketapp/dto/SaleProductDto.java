@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class SaleProductDto {
     private Long productId;
-    private Double salePrice;
+    private Long salePrice;
     private Long quantity;
 }

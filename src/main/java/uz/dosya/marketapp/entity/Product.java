@@ -17,7 +17,7 @@ public class Product {
     private String size;
     private String brand;
     private String color;
-    private Double price;
+    private Long price;
     private Long quantity;
     private Boolean deleted=false;
 }

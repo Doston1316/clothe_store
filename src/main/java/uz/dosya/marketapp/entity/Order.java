@@ -14,6 +14,4 @@ public class Order {
     private Long id;
     @ManyToMany
     private List<SaleProduct> saleProducts;
-    private Double totalPrice;
-    private Date date;
 }
