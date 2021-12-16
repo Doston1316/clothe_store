@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import uz.dosya.marketapp.model.User;
+import uz.dosya.marketapp.entity.User;
 import uz.dosya.marketapp.repository.UserRepository;
 
 import java.util.Collection;

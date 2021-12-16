@@ -7,6 +7,7 @@ import java.util.List;
 @Data
 public class OrderDto {
     private List<SaleProductDto> saleProducts;
+    private List<DebtorDto> debtorDto;
 }
 
 

@@ -3,13 +3,14 @@ package uz.dosya.marketapp.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import uz.dosya.marketapp.security.JwtConfigurer;
-import uz.dosya.marketapp.security.JwtTokenProvider;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
 
 @Configuration
 @EnableWebSecurity
@@ -17,9 +18,16 @@ import uz.dosya.marketapp.security.JwtTokenProvider;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
-    private final UserDetailsService userDetailsService;
-    private final JwtTokenProvider jwtTokenProvider;
 
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .inMemoryAuthentication()
+                .withUser("Doston").password(passwordEncoder().encode("12345")).roles("ADMIN")
+                .and()
+                .withUser("user").password(passwordEncoder().encode("user1234")).roles("USER");
+    }
 
 
 
@@ -34,18 +42,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/api/register").permitAll()
                 .antMatchers("/api/token").permitAll()
-                .antMatchers("/api/hello").permitAll()
+                .antMatchers("/api/v1/**").permitAll()
+                .antMatchers("/").hasAnyRole("USER","ADMIN")
                 .anyRequest().authenticated()
                 .and()
-                .cors()
+                .logout()
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .deleteCookies()
+                .permitAll()
                 .and()
-                .apply(new JwtConfigurer(jwtTokenProvider));
+                .formLogin();
+
     }
 
     @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 
 

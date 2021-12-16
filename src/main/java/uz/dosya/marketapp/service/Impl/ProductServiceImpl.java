@@ -3,7 +3,9 @@ package uz.dosya.marketapp.service.Impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import uz.dosya.marketapp.entity.Product;
+import uz.dosya.marketapp.entity.User;
 import uz.dosya.marketapp.repository.ProductRepository;
+import uz.dosya.marketapp.repository.UserRepository;
 import uz.dosya.marketapp.service.ProductService;
 
 import java.util.List;
@@ -13,6 +15,7 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository repository;
+    private final UserRepository userRepository;
 
     @Override
     public Product save(Product p) {

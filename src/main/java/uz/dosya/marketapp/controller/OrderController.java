@@ -2,11 +2,10 @@ package uz.dosya.marketapp.controller;
 
 import javassist.NotFoundException;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import uz.dosya.marketapp.dto.OrderDto;
 import uz.dosya.marketapp.entity.Order;
+import uz.dosya.marketapp.repository.DebtorRepository;
 import uz.dosya.marketapp.service.OrderService;
 
 import java.util.List;
@@ -17,10 +16,19 @@ import java.util.List;
 public class OrderController {
 
     private OrderService service;
+    private DebtorRepository debtorRepository;
 
-    @PostMapping
-    public Order save(@RequestBody OrderDto dto) throws NotFoundException {
-        return service.save(dto);
+    @PostMapping("/{id}")
+    public Order save(@PathVariable("id") Long id,
+                      @RequestBody OrderDto dto) throws NotFoundException {
+        return service.save(dto,id);
+    }
+
+
+    @PostMapping("/debt/{id}")
+    public Order saveDebtor(@PathVariable("id") Long id,
+                      @RequestBody OrderDto dto) throws NotFoundException {
+        return service.save(dto,id);
     }
 
     @GetMapping

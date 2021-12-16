@@ -15,4 +15,5 @@ public class SaleProductResult {
     private String name;
     private String size;
     private String brand;
+    private String status;
 }

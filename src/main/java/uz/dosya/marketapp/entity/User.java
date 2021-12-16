@@ -1,4 +1,4 @@
-package uz.dosya.marketapp.model;
+package uz.dosya.marketapp.entity;
 
 import lombok.Data;
 import uz.dosya.marketapp.enam.Status;

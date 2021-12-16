@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -18,6 +19,7 @@ public class Debtor {
     private String description;
     private String phone;
     private Long date;
+    private Boolean deleted=false;
 
 
 

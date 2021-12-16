@@ -1,7 +1,7 @@
 package uz.dosya.marketapp.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import uz.dosya.marketapp.model.User;
+import uz.dosya.marketapp.entity.User;
 
 public interface UserRepository extends JpaRepository<User,Long> {
 

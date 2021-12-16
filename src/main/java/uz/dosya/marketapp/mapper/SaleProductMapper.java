@@ -20,6 +20,7 @@ public class SaleProductMapper implements RowMapper {
         result.setSalePrice(rs.getLong("sale_price"));
         result.setDate(rs.getLong("date"));
         result.setSize(rs.getString("size"));
+        result.setStatus(rs.getString("status"));
         return result;
     }
 }
